@@ -7,3 +7,4 @@
 !.gitignore
 !ansible.cfg
 !m2
+!group_vars/
