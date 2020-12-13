@@ -5,8 +5,9 @@
   tasks:
           - name: "TASK 1: Get VRF config from routers"
             ios_command:
-                    commands: "show running-config | section vrf definition"
-                    
+                    # commands: "show running-config | section vrf definition"
+                    #Since I don't have any VRF configurations on my devices, I will just show the interface ips."
+                    commands: "show ip interface brief"
             register: cli_result
           
           - name: "TASK 2: Print VRF output"
