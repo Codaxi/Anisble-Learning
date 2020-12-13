@@ -3,11 +3,12 @@
   hosts: routers
   connection: network_cli
   tasks:
-        - name: "TASK 1: Get VRF config from routers"
-          ios_command:
-                  commands: "show running-config | section vrf definition"
-          register: cli_result
-
-       - name: "TASK 2: Print VRF output"
-         debug:
-                 msg: " {{ cli_result }} "
+          - name: "TASK 1: Get VRF config from routers"
+            ios_command:
+                    commands: "show running-config | section vrf definition"
+                    
+            register: cli_result
+          
+          - name: "TASK 2: Print VRF output"
+            debug:
+                    msg: "{{ cli_result }}"
