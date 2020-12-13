@@ -1,0 +1,7 @@
+#Ignores all files except for text, python and, ansible files
+*
+!*.py
+!*.txt
+!*.yml
+!README.md
+!.gitignore
