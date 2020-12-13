@@ -8,3 +8,4 @@
 !ansible.cfg
 !m2
 !group_vars/
+!outputs/

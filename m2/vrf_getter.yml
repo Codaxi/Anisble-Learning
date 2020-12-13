@@ -3,13 +3,24 @@
   hosts: routers
   connection: network_cli
   tasks:
-          - name: "TASK 1: Get VRF config from routers"
+          - name: "TASK 1: Get IP interface brief" #VRF config from routers"
             ios_command:
                     # commands: "show running-config | section vrf definition"
                     #Since I don't have any VRF configurations on my devices, I will just show the interface ips."
                     commands: "show ip interface brief"
             register: cli_result
           
-          - name: "TASK 2: Print VRF output"
+          - name: "TASK 2: Print IP interface output" #VRF output"
             debug:
                     msg: "{{ cli_result }}"
+                    
+          - name: "TASK 3: Create outputs/ folder"
+            file:
+                    path: "outputs"
+                    state: directory
+            run_once: true #creates this folder only once, instead of once per host device
+
+          - name: "TASK 4: Write output to file"
+            copy:
+                    content: "{{ cli_result.stdout[0] }}\n"
+                    dest: "outputs/{{ inventory_hostname }}.txt" #inventory_hostname is a special variable that ansible uses to reference back to the current host it is using
