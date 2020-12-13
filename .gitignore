@@ -5,3 +5,5 @@
 !*.yml
 !README.md
 !.gitignore
+!ansible.cfg
+!m2
