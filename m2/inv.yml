@@ -1,0 +1,12 @@
+---
+all:
+    children:
+        routers:
+            hosts:
+                R1:
+                R2:
+
+# Example of INI Format
+# [routers]
+# R1
+# R2
