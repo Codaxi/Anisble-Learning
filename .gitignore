@@ -1,4 +1,6 @@
 #Ignores all files except for text, python and, ansible files
+
+#Files
 *
 !*.py
 !*.txt
@@ -6,7 +8,11 @@
 !README.md
 !.gitignore
 !ansible.cfg
-!m2
+!*.j2
+
+#Directories
+!m2/
 !group_vars/
 !outputs/
 !host_vars/
+!templates/
