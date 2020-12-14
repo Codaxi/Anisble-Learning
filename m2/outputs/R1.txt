@@ -1,5 +1,15 @@
-Interface                  IP-Address      OK? Method Status                Protocol
-GigabitEthernet0/0         unassigned      YES unset  administratively down down    
-GigabitEthernet0/1         192.168.0.2     YES manual up                    up      
-GigabitEthernet0/2         unassigned      YES NVRAM  administratively down down    
-GigabitEthernet0/3         unassigned      YES NVRAM  administratively down down
+vrf definition CHEMICAL
+ description CHEMICAL ENGINEERING FIRM
+ rd 65000:2
+ route-target export 65000:2
+ route-target import 65000:2
+vrf definition CHEM_MGMT
+ description CHEMICAL ENGINEERING MANAGER
+ rd 65000:3
+ route-target export 65000:3
+ route-target import 65000:4
+vrf definition POLICE
+ description POLICE DEPARTMENT
+ rd 65000:1
+ route-target export 65000:1
+ route-target import 65000:1
