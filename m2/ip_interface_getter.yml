@@ -1,6 +1,4 @@
 ---
-
-#FOR SOME REASON SHOW RUN DOESN'T WANT TO WORK
 - name: "PLAY 1: Capture and store VRF config"
   hosts: routers
   connection: network_cli
@@ -11,11 +9,11 @@
                     #Since I don't have any VRF configurations on my devices, I will just show the interface ips."
                     commands: "show ip interface brief"
             register: cli_result
-
+          
           - name: "TASK 2: Print IP interface output" #VRF output"
             debug:
                     msg: "{{ cli_result }}"
-
+                    
           - name: "TASK 3: Create outputs/ folder"
             file:
                     path: "outputs"

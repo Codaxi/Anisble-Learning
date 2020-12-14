@@ -7,8 +7,8 @@
             ios_config:
                     src: "templates/vpn.j2"
                     save_when: changed
-                    notify: config_changed
-                    register: cli_result
+            notify: config_changed
+            register: cli_result
 
   handlers:
           - name: "HANDLER 1: Display relevant changes"
