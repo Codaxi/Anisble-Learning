@@ -9,3 +9,4 @@
 !m2
 !group_vars/
 !outputs/
+!host_vars/
