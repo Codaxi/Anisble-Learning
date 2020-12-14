@@ -10,9 +10,12 @@
 !ansible.cfg
 !*.j2
 
+
 #Directories
 !m2/
 !group_vars/
 !outputs/
 !host_vars/
 !templates/
+!plugins/
+!filter/
