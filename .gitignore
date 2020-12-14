@@ -19,3 +19,5 @@
 !templates/
 !plugins/
 !filter/
+!tests/
+!tasks/
