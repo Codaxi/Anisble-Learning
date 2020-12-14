@@ -6,7 +6,6 @@
           - name: "TASK 1: Apply VPN using SSH/CLI"
             ios_vrf:
                     vrfs: "{{ vrfs }}"
-                    save_when: changed
             notify: config_changed
             register: cli_result
 
