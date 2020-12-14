@@ -18,5 +18,5 @@
          # The loop replaces the with_* syntax
           - name: "TASK 3: Include all of the test cases"
             include_tasks: "{{ item }}"
-            loop: "(( test_paths }}"
+            loop: "{{ test_paths }}"
 
