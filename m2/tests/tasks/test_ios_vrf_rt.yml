@@ -14,8 +14,8 @@
                    rd 65000:2
                    route-target export 65000:111
                    route-target export 65000:222
-                   route-target export 65000:101
-                   route-target export 65000:202
+                   route-target import 65000:101
+                   route-target import 65000:202
                   vrf definition 123
                    description third VRF
                    rd 65000:3
