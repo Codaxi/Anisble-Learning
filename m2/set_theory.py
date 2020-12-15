@@ -22,3 +22,9 @@ have = {
     '65000:9'
 
 }
+
+# Print out set information
+print("Want:   ", want)
+print("Have:   ", have)
+print("Add:    ", want - have)
+print("Delete: ", have - want)
