@@ -8,7 +8,8 @@ class FilterModule:
     def filters():
         return {
                 'bgp_as_from_rt': FilterModule.bgp_as_from_rt,
-                'ios_vrf_rt': FilterModule.ios_vrf_rt
+                'ios_vrf_rt': FilterModule.ios_vrf_rt,
+                'rt_diff': FilterModule.rt_diff
                 }
 
     @staticmethod
@@ -49,3 +50,48 @@ class FilterModule:
 
 
         return return_dict
+
+    @staticmethod
+    def rt_diff(int_vrf_list, run_vrf_dict):
+        """
+        Uses set theory to determine the import/export route-targets that should be added or deleted. Only differences are captured, which helps Ansible achieve idempotence when making configuration updates.
+
+        int_vrf_list = intended vrf list
+        run_vrf_dict = current running vrf list
+        """
+
+        return_list = []
+        for int_vrf in int_vrf_list:
+            # Copy benign parameteres from intended configuration
+            vrf_dict = {
+            'name': int_vrf['name'],
+            'rd': int_vrf['rd'],
+            'description': int_vrf['description']
+            }
+
+            # If the intended VRF exists in the running configuration
+            run_vrf = run_vrf_dict.get(str(int_vrf['name']))
+            if run_vrf:
+                # Convert each list to a set
+                int_rti = set(int_vrf['route_import'])
+                int_rte = set(int_vrf['route_export'])
+                run_rti = set(int_vrf['route_import'])
+                run_rte = set(int_vrf['route_export'])
+
+                # Perform set "difference" operation
+                vrf_dict.update({'add_rti': list(int_rti - run_rti)})
+                vrf_dict.update({'del_rti': list(run_rti - int_rti)})
+                vrf_dict.update({'add_rte': list(int_rte - run_rte)})
+                vrf_dict.update({'del_rte': list(run_rte - int_rte)})
+
+
+            # Intended VRF Doesn't exist, so add all the RTs
+            else:
+                vrf_dict.update({'add_rti': int_vrf['route_import']})
+                vrf_dict.update({'del_rti': []})
+                vrf_dict.update({'add_rte': int_vrf['route_export']})
+
+            # Add the newly created dictionary to the list of Directories
+            return_list.append(vrf_dict)
+
+        return return_list
